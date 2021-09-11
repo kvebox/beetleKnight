@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public int maxHealth = 25;
-    public int currentHealth;
+    public float maxHealth = 25f;
+    public float currentHealth;
     public HealthBar healthBar;
 
     void Start() {
@@ -13,10 +13,12 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-
+        if (Input.GetButtonDown("Dash")) {
+            TakeDamage(5);
+        }
     }
 
-    void TakeDamage(int damage) {
+    void TakeDamage(float damage) {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }

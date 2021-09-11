@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public float dashCooldown = 25;
     public float dashTimer = 0;
     private float currentDashSpeed;
+    public HealthBar dashBar;
 
     public CharacterController2D controller;
     float horizontalMove = 0f;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
                         dashTimer = dashCooldown;
                         state = State.DASH;
                         isDashing = true;
+                        dashBar.SetHealth(0);
                     }
                 }
                 break;
@@ -58,6 +60,10 @@ public class PlayerMovement : MonoBehaviour {
                     dashTimer = dashCooldown;
                 }
                 break;
+        }
+
+        if (dashTimer < 0) {
+            dashBar.SetHealth(-dashTimer);
         }
     }
 
